@@ -1,0 +1,48 @@
+version: "3.7"
+services:
+  fpt_backend:
+    build:
+      context: ./docker/php
+      dockerfile: dev.Dockerfile
+    container_name: fpt_backend
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+      - ./docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - fpt_net
+
+  fpt_db:
+    image: mariadb:latest
+    container_name: fpt_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: fpt_poly
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_USER: fpt_poly
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+      - ./docker/mysql:/etc/mysql/conf.d
+    ports:
+      - "3336:3306"
+    networks:
+      - fpt_net
+  fpt_nginx:
+    image: nginx:alpine
+    container_name: fpt_nginx
+    restart: unless-stopped
+    ports:
+      - "8009:83"
+    depends_on:
+      - fpt_backend
+      - fpt_db
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - fpt_net
+networks:
+  fpt_net:
+    driver: bridge
