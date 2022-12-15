@@ -10,5 +10,5 @@ yarn-error.log
 /.vscode
 docker-compose.yml
 /docker/mysql
-/src/vendor
-/src/composer.lock
+#/src/vendor
+#/src/composer.lock
