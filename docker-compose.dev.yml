@@ -18,10 +18,10 @@ services:
     container_name: fpt_db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: fpt_poly
+      MYSQL_DATABASE: fpt_btec
       MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: root
-      MYSQL_USER: fpt_poly
+      MYSQL_USER: fpt_btec
     volumes:
       - ./docker/mysql:/var/lib/mysql
       - ./docker/mysql:/etc/mysql/conf.d

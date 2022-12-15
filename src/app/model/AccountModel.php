@@ -1,20 +1,21 @@
 <?php
+declare(strict_types=1);
 
 namespace app\model;
 
-use app\database\Database;
+use app\singleton\Database;
 use \PDO;
 
 class AccountModel
 {
-    private $db;
+    private ?Database $db = null;
 
     public function __construct()
     {
         $this->db = Database::getInstance();
     }
 
-    public function getData()
+    public function getData() : array
     {
         $data = [];
         $sql = "SELECT * FROM `account`";
