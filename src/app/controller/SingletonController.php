@@ -8,6 +8,7 @@ use app\model\AccountModel;
 class SingletonController
 {
     private ?AccountModel $model = null;
+
     public function __construct()
     {
         $this->model = new AccountModel();

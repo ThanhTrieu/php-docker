@@ -5,7 +5,8 @@ namespace app\adapter\payments;
 
 class PaymentBusiness
 {
-    public function __construct() {
+    public function __construct()
+    {
         // Hàm khởi tạo
     }
 

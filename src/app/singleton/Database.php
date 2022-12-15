@@ -30,7 +30,7 @@ final class Database
         }
 
     }
-    public function closeConnection()
+    public function closeConnection() : void
     {
         $this->connection = null;
     }
